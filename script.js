@@ -14,15 +14,13 @@ const imageUrls = [
 let images = [];
 let selectedImages = [];
 
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
+function shuffle(arr) {
+  return arr.sort(() => Math.random() - 0.5);
 }
 
 function renderImages() {
   imageGrid.innerHTML = "";
   selectedImages = [];
-
-  // Duplicate one image
   const duplicateIndex = Math.floor(Math.random() * imageUrls.length);
   const duplicateImage = imageUrls[duplicateIndex];
 
@@ -33,6 +31,7 @@ function renderImages() {
     img.src = src;
     img.dataset.index = index;
     img.alt = "verification tile";
+    img.classList.add(`img${index + 1}`);
     img.addEventListener("click", handleImageClick);
     imageGrid.appendChild(img);
   });
@@ -89,5 +88,4 @@ verifyBtn.addEventListener("click", () => {
   verifySelection();
 });
 
-// Initialize
 renderImages();
